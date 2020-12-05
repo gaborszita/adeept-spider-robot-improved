@@ -22,7 +22,7 @@ Date: 2018/06/12
 #include <Adeept_Distance.h>
 #include <Adeept_PWMPCA9685.h>
 #include <SPI.h>
-#include "RF24.h"
+#include <RF24.h>
 Adeept_PWMPCA9685 pwm0 = Adeept_PWMPCA9685(0x40);                //1+A5 A4 A3 A2 A1 A0+RW, RW is Read and Write
 Adeept_PWMPCA9685 pwm1 = Adeept_PWMPCA9685(0x41);                //1+A5 A4 A3 A2 A1 A0+RW, RW is Read and Write
 Adeept_Distance Dist;
@@ -246,7 +246,12 @@ void UltrasoundDetectionMode(){//mode=1
     while(mode==1){
       distance = Dist.getDistanceCentimeter();
       if(distance<=20){
-      ForwardStop();
+      if(legpos==0){
+        ForwardStop();
+      }
+      else{
+        ForwardStop2();
+      }
       pwm0.setPWM(3, 0, angle(180));
       delay(1000);
       do{
