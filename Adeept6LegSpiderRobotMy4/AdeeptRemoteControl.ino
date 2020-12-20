@@ -18,7 +18,7 @@ Author: Tom
 Date: 2018/06/12 
 ***********************************************************/
 #include <SPI.h>
-#include "RF24.h"
+#include <RF24.h>
 RF24 radio(9, 10);            // define the object to control NRF24L01
 byte addresses[5] = "5";  // define communication address which should correspond to remote control
 int data[10];                  // define array used to save the communication data
